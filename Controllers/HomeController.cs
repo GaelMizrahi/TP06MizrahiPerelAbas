@@ -18,7 +18,7 @@ public class HomeController : Controller
     {
         return View();
     }
-    public IActionResult Ingresar(string nombreUsuario, string contraseña)
+    public IActionResult IniciarSesion(string nombreUsuario, string contraseña)
     {
         return View("Index");
     }

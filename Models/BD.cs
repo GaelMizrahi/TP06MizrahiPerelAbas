@@ -1,13 +1,16 @@
 namespace TP06.Models;
 using Microsoft.Data.SqlClient;
+using Dapper;
 
 public class BD{
-    public List<Integrante> iniciarSesion(string nombreUsuario, string contraseña)
+    private static string _connectionString = @"Server=localhost; 
+    DataBase TP06; Integrated Security=True; TrustServerCertificate=True;";
+    public List<Integrante> IniciarSesion(string nombreUsuario, string contraseña)
 {
     List <Integrante> integrantes = new List<Integrante>();
     using(SqlConnection connection = new SqlConnection(_connectionString))
     {
-        string query = "SELECT * FROM Integrante WHERE nombreUsuario = @pnombreUsuario";
+        string query = "SELECT * FROM Integrante WHERE nombreUsuario = @nombreUsuario AND contraseña = @contraseña";
         integrantes = connection.Query<Integrante>(query).ToList();
     }
      return integrantes;
