@@ -1,12 +1,12 @@
 namespace TP06.Models;
 using Newtonsoft.Json;
+using Microsoft.Data.SqlClient;
 
 
 public class Integrante
 {
 
     [JsonProperty]
-
     public string nombreUsuario { get; private set; }
 
     [JsonProperty]
