@@ -3,6 +3,10 @@
 }
 
 <div>
-    <h1>Index</h1>
-    <p>Bienvenidos al sitio web de NombreProyecto</p>
+    
+    <h1>Bienvenidos!</h1>
+    <form action='@Url.Action("Ingresar", "Home"' method="POST" enctype="application/x-www-form-urlencoded">
+    Ingrese su nombre de usuario: <input type="text" name="nombreUsuario"/>
+    Ingrese su contraseña: <input type="text" name="contraseña"/>
+    <input type="submit" value="Guardar"/>
 </div>
