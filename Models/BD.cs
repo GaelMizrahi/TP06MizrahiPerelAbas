@@ -14,7 +14,6 @@ public class BD{
         integrantes = connection.Query<Integrante>(query).ToList();
     }
      return integrantes;
-
 }
     
 }

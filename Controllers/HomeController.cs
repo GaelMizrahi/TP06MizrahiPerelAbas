@@ -19,7 +19,8 @@ public class HomeController : Controller
         return View();
     }
     public IActionResult IniciarSesion(string nombreUsuario, string contraseña)
-    {
+    {   
+       List<Integrante> integrante = BD.IniciarSesion(nombreUsuario, contraseña);
         return View("Index");
     }
 }
