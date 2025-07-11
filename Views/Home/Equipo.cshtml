@@ -1,9 +1,16 @@
 @{
     ViewData["Title"] = "Equipo";
 }
+
+
+
+
 @foreach(Integrante integrante in ViewBag.Equipo)
 {
+  <h3>@integrante.nombreUsuario</h3>
   <h3>@integrante.edad</h3>
+  <h3>@integrante.comidaFav</h3>
   <h3>@integrante.cancionFav</h3>
-
+  <h3>@integrante.dineroBanco</h3>
 }
+<a href = '@Url.Action("Index", "Home")' alt="Cerrar sesion"><h1>Cerrar sesion</h1></a>

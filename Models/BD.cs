@@ -13,7 +13,7 @@ public class BD
         using (SqlConnection connection = new SqlConnection(_connectionString))
         {
             string query = "SELECT * FROM Integrante WHERE nombreUsuario = @nombreUsuario AND contraseña = @contraseña ";
-            integrante = connection.Query<Integrante>(query, new {nombreUsuario = nombreUsuario}, new {contraseña = contraseña} ).ToList();
+            integrante = connection.Query<Integrante>(query, new {nombreUsuario, contraseña} ).ToList();
 
         }
         return integrante;
@@ -24,7 +24,7 @@ public class BD
         using (SqlConnection connection = new SqlConnection(_connectionString))
         {
             string query = "SELECT * FROM Integrante WHERE equipo = @equipo";
-            integrantes = connection.Query<Integrante>(query).ToList();
+            integrantes = connection.Query<Integrante>(query, new {equipo}).ToList();
 
         }
         return integrantes;

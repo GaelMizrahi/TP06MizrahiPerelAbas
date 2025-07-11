@@ -22,18 +22,17 @@ public class HomeController : Controller
     {
         BD bd = new BD();
         List<Integrante> integrante = bd.IniciarSesion(nombreUsuario, contraseña);
-        HttpContext.Session.SetString("BD", Objeto.ObjectToString(bd));
-        return View("Index");
-    }
-    public IActionResult mostrarEquipo()
-    {
-        BD bd = Objeto.StringToObject<BD>(HttpContext.Session.GetString("bd"));
-        Integrante integrante = new Integrante();
-        string equipo = integrante.equipo;
-        HttpContext.Session.SetString("Integrante", Objeto.ObjectToString(integrante));
-        List<Integrante> integrantes = bd.buscarEquipo(integrante, equipo);
+        Integrante integrantee = new Integrante();
+        string equipo = integrantee.equipo;
+        List<Integrante> integrantes = bd.buscarEquipo(integrantee, equipo);
          ViewBag.Equipo = integrantes;
-        return View("Equipo");
+         if(ViewBag.Equipo != null)
+         {
+            return View("Equipo");
+         }
+         else return View("Index");
+        
     }
+   
 
 }
