@@ -19,8 +19,21 @@ public class HomeController : Controller
         return View();
     }
     public IActionResult IniciarSesion(string nombreUsuario, string contraseña)
-    {   
-       List<Integrante> integrante = BD.IniciarSesion(nombreUsuario, contraseña);
+    {
+        BD bd = new BD();
+        List<Integrante> integrante = bd.IniciarSesion(nombreUsuario, contraseña);
+        HttpContext.Session.SetString("BD", Objeto.ObjectToString(bd));
         return View("Index");
     }
+    public IActionResult mostrarEquipo()
+    {
+        BD bd = Objeto.StringToObject<BD>(HttpContext.Session.GetString("bd"));
+        Integrante integrante = new Integrante();
+        string equipo = Integrante.equipo;
+        HttpContext.Session.SetString("Integrante", Objeto.ObjectToString(integrante));
+        List<Integrante> integrantes = bd.buscarEquipo(integrante, equipo);
+         ViewBag.Equipo = integrantes;
+        return View("Equipo");
+    }
+
 }
