@@ -4,18 +4,19 @@ using Dapper;
 
 public class BD
 {
-    private static string _connectionString = @"Server=localhost; 
-    DataBase TP06; Integrated Security=True; TrustServerCertificate=True;";
+  
+   private static string _connectionString = @"Server=localhost; 
+   DataBase = TP06; Integrated Security=True; TrustServerCertificate=True;";
     public List<Integrante> IniciarSesion(string nombreUsuario, string contraseña)
     {
-        List<Integrante> integrantes = new List<Integrante>();
+        List<Integrante> integrante = new List<Integrante>();
         using (SqlConnection connection = new SqlConnection(_connectionString))
         {
             string query = "SELECT * FROM Integrante WHERE nombreUsuario = @nombreUsuario AND contraseña = @contraseña ";
-            integrantes = connection.Query<Integrante>(query).ToList();
+            integrante = connection.Query<Integrante>(query, new {nombreUsuario = nombreUsuario}, new {contraseña = contraseña} ).ToList();
 
         }
-        return integrantes;
+        return integrante;
     }
     public List<Integrante> buscarEquipo(Integrante integrante, string equipo)
     {

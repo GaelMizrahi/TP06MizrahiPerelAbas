@@ -29,7 +29,7 @@ public class HomeController : Controller
     {
         BD bd = Objeto.StringToObject<BD>(HttpContext.Session.GetString("bd"));
         Integrante integrante = new Integrante();
-        string equipo = Integrante.equipo;
+        string equipo = integrante.equipo;
         HttpContext.Session.SetString("Integrante", Objeto.ObjectToString(integrante));
         List<Integrante> integrantes = bd.buscarEquipo(integrante, equipo);
          ViewBag.Equipo = integrantes;
