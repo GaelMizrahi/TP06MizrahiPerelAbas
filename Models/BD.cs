@@ -7,19 +7,20 @@ public class BD
   
    private static string _connectionString = @"Server=localhost; 
    DataBase = TP06; Integrated Security=True; TrustServerCertificate=True;";
-    public List<Integrante> IniciarSesion(string nombreUsuario, string contraseña)
+    public Integrante IniciarSesion(string nombreUsuario, string contraseña)
     {
-        List<Integrante> integrante = new List<Integrante>();
+        Integrante integrante = new Integrante();
         using (SqlConnection connection = new SqlConnection(_connectionString))
         {
             string query = "SELECT * FROM Integrante WHERE nombreUsuario = @nombreUsuario AND contraseña = @contraseña ";
-            integrante = connection.Query<Integrante>(query, new {nombreUsuario, contraseña} ).ToList();
+            integrante = connection.QueryFirstOrDefault<Integrante>(query, new {nombreUsuario, contraseña} );
 
         }
         return integrante;
     }
-    public List<Integrante> buscarEquipo(Integrante integrante, string equipo)
+    public List<Integrante> buscarEquipo(Integrante integrante)
     {
+        string equipo = integrante.equipo;
         List<Integrante> integrantes = new List<Integrante>();
         using (SqlConnection connection = new SqlConnection(_connectionString))
         {
@@ -27,6 +28,8 @@ public class BD
             integrantes = connection.Query<Integrante>(query, new {equipo}).ToList();
 
         }
+
+        Console.WriteLine("INTEGRANTESSS " + integrante);
         return integrantes;
     }
 

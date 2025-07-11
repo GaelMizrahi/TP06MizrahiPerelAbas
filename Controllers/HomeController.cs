@@ -21,12 +21,10 @@ public class HomeController : Controller
     public IActionResult IniciarSesion(string nombreUsuario, string contraseña)
     {
         BD bd = new BD();
-        List<Integrante> integrante = bd.IniciarSesion(nombreUsuario, contraseña);
-        Integrante integrantee = new Integrante();
-        string equipo = integrantee.equipo;
-        List<Integrante> integrantes = bd.buscarEquipo(integrantee, equipo);
+        Integrante integrantee = bd.IniciarSesion(nombreUsuario, contraseña);
+        List<Integrante> integrantes = bd.buscarEquipo(integrantee);
          ViewBag.Equipo = integrantes;
-         if(ViewBag.Equipo != null)
+         if(integrantes.Count > 0)
          {
             return View("Equipo");
          }
